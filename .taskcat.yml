@@ -1,5 +1,5 @@
 project:
-  name: quickstart-neo4j
+  name: cfn-ps-neo4j
 tests:
   default:
     template: ./templates/neo4j.template.yaml
@@ -7,7 +7,7 @@ tests:
       AvailabilityZones: $[taskcat_genaz_3]
       QSS3BucketName: $[taskcat_autobucket]
       QSS3BucketRegion: $[taskcat_current_region]
-      QSS3KeyPrefix: quickstart-neo4j/
+      QSS3KeyPrefix: cfn-ps-neo4j/
       NumberOfServers: "3"
       SSHCIDR: "0.0.0.0/0"
       InstallGraphDataScience: "False"
