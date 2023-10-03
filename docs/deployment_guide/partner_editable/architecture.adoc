@@ -1,28 +1,20 @@
 :xrefstyle: short
 
+WARNING: This Partner Solution does not support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html[shared subnets^].
+
 Deploying this Partner Solution with default parameters builds the following {partner-product-short-name} environment in the
 AWS Cloud.
 
-// Replace this example diagram with your own. Follow our wiki guidelines: https://w.amazon.com/bin/view/AWS_Quick_Starts/Process_for_PSAs/#HPrepareyourarchitecturediagram. Upload your source PowerPoint file to the GitHub {deployment name}/docs/images/ directory in its repository.
-
 [#architecture1]
 .Partner Solution architecture for {partner-product-short-name} on AWS
-image::../docs/deployment_guide/images/architecture_diagram.png[Architecture]
+image::../docs/deployment_guide/images/neo4j_architecture_diagram.png[Architecture]
 
-As shown in <<architecture1>>, this Partner Solution sets up the following:
+As shown in <<architecture1>>, the Partner Solution sets up the following:
 
-* A highly available architecture that spans two Availability Zones.*
-* A virtual private cloud (VPC) configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*
-* In the public subnets:
-** Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*
-** A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in public and private subnets.*
-* In the private subnets:
-** <item>.
-** <item>.
-// Add bullet points for any additional components that are included in the deployment. Ensure that the additional components are shown in the architecture diagram. End each bullet with a period.
-* <describe any additional components>.
+* A highly available architecture that spans three Availability Zones in your default virtual private cloud (VPC).
+* An internet gateway to allow the VPC to connect to the internet.
+* A Network Load Balancer to route traffic to the Neo4j instances in the public subnets.
+* In the public subnets, Neo4j deployed to Amazon Elastic Compute Cloud (Amazon EC2) instances in an Auto Scaling group. You can deploy a single instance or an autonomous cluster of 3–10 instances (three shown).*
+* A security group to control access to the Neo4j instances.
 
-[.small]#* The template that deploys this Partner Solution into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.#
+[.small]#* By default, to give users a better experience when getting started with {partner-product-short-name}, this Partner Solution deploys in a public subnet. If you're deploying this Partner Solution in a production environment, consider using a private subnet. A private subnet limits how you access the Neo4j application and Neo4j browser over the public internet. For more information, refer to https://docs.aws.amazon.com/vpc/latest/userguide/extend-intro.html[Connect your VPC to other networks^].#
